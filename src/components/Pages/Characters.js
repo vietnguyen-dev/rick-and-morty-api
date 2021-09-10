@@ -33,7 +33,7 @@ const Characters = () => {
                     imgSrc: char.image
                 }
             })
-            
+
             setCharacters(charData)
         } catch(err) {
             console.error(err)
@@ -50,7 +50,6 @@ const Characters = () => {
         <>
         <h1>Characters</h1>
         <MainBody>
-            
             {
                 characters.map(character =>
                     <BoxCard 
