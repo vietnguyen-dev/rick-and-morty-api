@@ -1,9 +1,10 @@
 import './App.css';
+import Body from './components/Nav/Body';
 
 function App() {
   return (
     <div className="App">
-     
+     <Body />
     </div>
   );
 }
