@@ -1,7 +1,5 @@
 .mainBody{
     display: grid;
     grid-template-columns: repeat(3, auto);
-    /* height: 100%; */
-    grid-gap: 2%;
     margin: 5% 7%;
 }
