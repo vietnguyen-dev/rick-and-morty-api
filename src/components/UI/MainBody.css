@@ -1,4 +1,6 @@
 .mainBody{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: repeat(3, auto);
+    grid-gap: 2%;
+    margin: 5% 7%;
 }
