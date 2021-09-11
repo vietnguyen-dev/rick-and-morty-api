@@ -48,6 +48,9 @@ const Characters = () => {
 
     useEffect(() =>{
         fetchCharacters();
+        return() =>{
+            setCharacters([])
+        }
     }, [])
 
     return (

@@ -1,11 +1,11 @@
 .container{
+    display: flex;
     align-items: center;
     justify-content: center;
-    display: flex;
     border:1px solid black;
 }
 
-.currentPage, button{
+.currentPage, .pageButtons{
     border:1px solid blue;
     background-color: lightgrey;
     border-radius: 5%;

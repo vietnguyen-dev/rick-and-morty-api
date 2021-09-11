@@ -3,6 +3,9 @@ import './PaginateButtons.css'
 
 const PaginateButtons = (props) => {
    const [pageNum, setPageNum] = useState(1);
+   // const [fetchString, setFetchString] = useState(
+   //   `https://rickandmortyapi.com/api/character?page=2`
+   // );
 
     const paginate = async (pageNumber) => {
       try {
@@ -39,25 +42,52 @@ const PaginateButtons = (props) => {
       }
     };  
 
-    const pageUp =() =>{
-       setPageNum(() => pageNum + 1)
+    const pageUp =() => {
+       setPageNum(() => pageNum + 1);
     }
 
     const pageDown = () => {
-      setPageNum(() => pageNum - 1);
-    };
+       setPageNum(() => pageNum - 1);
+    }
 
     useEffect(() => {
        paginate(pageNum)
     })
 
-   return (
-     <div className="container">
-       <button onClick={pageDown}>Prev</button>
-       <div className='currentPage'>{pageNum}</div>
-       <button onClick={pageUp}>Next</button>
-     </div>
-   );
+   useEffect(() =>{
+       document.body.scrollTop = document.documentElement.scrollTop = 0;
+   }, [pageNum])
+
+   if (pageNum === 1){
+      return(
+         <div className="container">
+            <div className="currentPage">{pageNum}</div>
+            <button className="pageButtons" onClick={pageUp}> Next</button>
+       </div>
+      )
+   } else if (pageNum > 1 && pageNum < 34){
+      return (
+         <div className="container">
+         <button className="pageButtons" onClick={pageDown}>
+            Prev
+         </button>
+         <div className="currentPage">{pageNum}</div>
+         <button className="pageButtons" onClick={pageUp}>
+            Next
+         </button>
+         </div>
+      );
+   } else {
+      return(
+         <div className="container">
+            <button className="pageButtons" onClick={pageDown}>
+               Prev
+            </button>
+            <div className="currentPage">{pageNum}</div>
+         </div>
+      )
+   }
+  
 }
 
 export default PaginateButtons
