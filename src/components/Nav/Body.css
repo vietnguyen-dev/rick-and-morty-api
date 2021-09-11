@@ -1,0 +1,21 @@
+.navBar{
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 30%;
+    position: relative;
+    left: 65%;
+}
+
+.navBack{
+    background-color: #17517e;
+    padding: 2% 3%;
+}
+
+.navLink{
+    color: white;
+    text-decoration: none;
+    display: grid;
+    text-align: center;
+    align-items: center;
+}
