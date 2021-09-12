@@ -3,10 +3,7 @@ import './PaginateButtons.css'
 
 const PaginateButtons = (props) => {
    const [pageNum, setPageNum] = useState(1);
-   // const [fetchString, setFetchString] = useState(
-   //   `https://rickandmortyapi.com/api/character?page=2`
-   // );
-
+   
     const paginate = async (pageNumber) => {
       try {
         const response = await fetch(

@@ -1,0 +1,15 @@
+.boxCard{
+    display: grid;
+    grid-template-columns: auto auto;
+    margin: 4%;
+    background-color: #36454F;
+    border-radius: 15px;
+}
+
+.cardText{
+    margin-top: 5%;
+    margin-left: 3%;
+    color: white;
+    padding: 5% 6%;
+}
+

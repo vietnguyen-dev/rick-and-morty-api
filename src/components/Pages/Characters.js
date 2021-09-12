@@ -1,16 +1,31 @@
 import React, {useState, useEffect} from 'react'
 import MainBody from '../UI/MainBody'
-import BoxCard from '../UI/BoxCard'
+import BoxGrid from '../UI/BoxGrid';
 import Page from '../UI/Page';
+import InfoPage from './InfoPage';
 import ChararacterSearchForm from '../Forms/ChararacterSearchForm';
 import PaginateButtons from '../UI/PaginateButtons';
 
 const Characters = () => {
     const [characters, setCharacters] = useState([])
+    const [charSelect, setCharSelect] = useState(false)
+    const [requestId, setRequestId] = useState(undefined)
 
-    const setCharsOutside = (chars) =>{
+    const settingCharId = id =>{
+       setRequestId(`https://rickandmortyapi.com/api/character/${id}`);
+    }
+
+    const setCharsOutside = chars =>{
         setCharacters(chars)
     }
+
+    const setCharPage = () =>{
+        setCharSelect(true)
+    }
+
+     const setCharPageBack = () => {
+       setCharSelect(false);
+     };
 
     const fetchCharacters = async () =>{
         try {
@@ -55,21 +70,22 @@ const Characters = () => {
 
     return (
       <Page heading="Characters">
-        <p style={{ textAlign: `center` }}>
-          Search and Learn about your favorite Rick and Morty Characters!
-        </p>
-        <ChararacterSearchForm />
-        <MainBody>
-          {characters.map((character) => (
-            <BoxCard
-              key={character.id}
-              name={character.name}
-              imgSrc={character.imgSrc}
-              description={character.description}
-            />
-          ))}
-        </MainBody>
-        <PaginateButtons setCharsOutside={setCharsOutside}/>
+        {charSelect ? (
+          <div>
+            <InfoPage setCharPageBack={setCharPageBack} />
+          </div>
+        ) : (
+          <div>
+            <p style={{ textAlign: `center` }}>
+              Search and Learn about your favorite Rick and Morty Characters!
+            </p>
+            <ChararacterSearchForm />
+            <MainBody>
+              <BoxGrid items={characters} setCharPage={setCharPage} />
+            </MainBody>
+            <PaginateButtons setCharsOutside={setCharsOutside} />
+          </div>
+        )}
       </Page>
     );
 }
