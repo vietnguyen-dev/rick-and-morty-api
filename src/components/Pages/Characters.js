@@ -81,7 +81,7 @@ const Characters = () => {
             </p>
             <ChararacterSearchForm />
             <MainBody>
-              <BoxGrid items={characters} setCharPage={setCharPage} />
+              <BoxGrid items={characters} setCharPage={setCharPage} setCharId={settingCharId}/>
             </MainBody>
             <PaginateButtons setCharsOutside={setCharsOutside} />
           </div>

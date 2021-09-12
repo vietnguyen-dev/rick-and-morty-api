@@ -13,6 +13,7 @@ const BoxGrid = (props) => {
             imgSrc={item.imgSrc}
             description={item.description}
             setPage={() => props.setCharPage()}
+            setId={() => props.setCharId()}
           />
         ))}
       </div>
