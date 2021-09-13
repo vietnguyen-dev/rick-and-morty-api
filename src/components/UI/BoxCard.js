@@ -3,8 +3,7 @@ import './BoxCard.css'
 
 const BoxCard = props => {
     const settingPage = () =>{
-      props.setId(props.id);
-      props.setPage(false)
+      props.setPage([props.id, false])
     }
 
     return (

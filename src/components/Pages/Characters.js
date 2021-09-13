@@ -9,23 +9,17 @@ import PaginateButtons from '../UI/PaginateButtons';
 const Characters = () => {
     const [characters, setCharacters] = useState([])
     const [charSelect, setCharSelect] = useState(false)
-    const [requestId, setRequestId] = useState(undefined)
+    const [requestId, setRequestId] = useState(null)
 
-    const settingCharId = id =>{
-       setRequestId(`https://rickandmortyapi.com/api/character/${id}`);
+    const setCharsOutside = chars => setCharacters(chars);
+    
+
+    const setCharPage = obj =>{
+        setRequestId(`https://rickandmortyapi.com/api/character/${obj.id}`);
+        setCharSelect(obj.condition)
     }
 
-    const setCharsOutside = chars =>{
-        setCharacters(chars)
-    }
-
-    const setCharPage = () =>{
-        setCharSelect(true)
-    }
-
-     const setCharPageBack = () => {
-       setCharSelect(false);
-     };
+     const setCharPageBack = () => setCharSelect(false);
 
     const fetchCharacters = async () =>{
         try {
@@ -41,7 +35,7 @@ const Characters = () => {
             //console.log(response)
 
             if (response.status !== 200) {
-              throw new Error("Something went wrong!");
+              throw new Error("Can't Fetch Characters");
             }
             
             const data = await response.json();
@@ -72,7 +66,7 @@ const Characters = () => {
       <Page heading="Characters">
         {charSelect ? (
           <div>
-            <InfoPage setCharPageBack={setCharPageBack} />
+            <InfoPage setCharPageBack={setCharPageBack} requestString={requestId}/>
           </div>
         ) : (
           <div>
@@ -81,7 +75,7 @@ const Characters = () => {
             </p>
             <ChararacterSearchForm />
             <MainBody>
-              <BoxGrid items={characters} setCharPage={setCharPage} setCharId={settingCharId}/>
+              <BoxGrid items={characters} setCharPage={setCharPage}/>
             </MainBody>
             <PaginateButtons setCharsOutside={setCharsOutside} />
           </div>
