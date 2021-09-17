@@ -1,4 +1,26 @@
 .infoPage{
     display: grid;
-    grid-template-columns: 70% 30%;
+    grid-template-columns: 30% 70%;
+    margin: 3% 7%;
+}
+
+.backButton, .infoHead{
+    margin-left: 7%;
+}
+
+.infoHead{
+    margin-top: 2%;
+    font-size: 2rem;
+}
+
+.infoText p{
+    padding-bottom: 2.5%;
+    font-size: 1.2rem;
+}
+
+.nextInfo{
+   display: grid;
+   align-items: center;
+   justify-content: center;
+   margin: 5%;
 }

@@ -6,10 +6,10 @@ import Footer from './components/UI/Footer';
 
 function App() {
   return (
-    <div className="App">
+    <>
      <Body />
      <Footer />
-    </div>
+    </>
   );
 }
 

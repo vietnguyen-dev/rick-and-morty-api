@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import './InfoPage.css'
+import CharInfo from '../UI/CharInfo';
 
 const InfoPage = (props) => {
   const [info, setInfo] = useState({});
@@ -19,7 +20,22 @@ const InfoPage = (props) => {
           }
 
           const data = await response.json();
-          setInfo(data)
+
+          let regexAfterSlash = /[^/]*$/;
+
+          let refinedCharData = {
+            name: data.name,
+            image: data.image,
+            location: data.location.name,
+            origin: data.origin.name,
+            species: data.species,
+            gender: data.gender,
+            type: data.type,
+            status: data.status,
+            firstAppear: data.episode[0].match(regexAfterSlash),
+            lastestAppear: data.episode[data.episode.length - 1].match(regexAfterSlash)
+          };
+          setInfo(refinedCharData)
       } catch (err){
           console.error(err)
       }
@@ -35,20 +51,23 @@ const InfoPage = (props) => {
 
   return (
     <>
-      <div>
-        <button onClick={() => props.setCharPageBack()}>Back</button>
+      <button className="backButton" onClick={() => props.setCharPageBack()}>
+        Back
+      </button>
+      <h2 className="infoHead">{info.name}</h2>
+      <div className="infoPage">
+        <img src={info.image} alt={info.name} />
+        <div className="infoText">
+            <CharInfo gender={info.gender} status={info.status} location={info.location} 
+            origin={info.origin} species={info.species} firstAppear={info.firstAppear} lastestAppear={info.lastestAppear} />
+        </div>
       </div>
-      <div className='infoPage'> 
-        <div>
-            <h1>{info.name}</h1>
-            <p>Gender: {info.gender}</p>
-            <p></p>
-        </div>
-        <div>
-            <img src={info.image} alt={info.name}/>
-        </div>
-       </div>
-      </>
+      {/* <div className="nextInfo">
+        <button>
+          {parseInt(props.requestString.match(/[^/]*$/)) + 1}. Next
+        </button>
+      </div> */}
+    </>
   );
 }
 
