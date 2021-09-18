@@ -8,12 +8,13 @@ const BoxCard = props => {
 
     return (
       <div className="boxCard" onClick={settingPage}>
-        <div>s
+        <div>
           <img className='boxImg' src={props.imgSrc} alt={`${props.name}`} />
         </div>
         <div className='cardText'>
           <h3>{props.name}</h3>
-          <p>{props.description}</p>
+          <p> Species: {props.species}</p>
+          <p> Status: {props.status}</p>
         </div>
       </div>
     );

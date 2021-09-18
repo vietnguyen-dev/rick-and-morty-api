@@ -42,7 +42,7 @@ const InfoPage = (props) => {
       }
     };
     getCharData();
-    console.log(props.requestString);
+      console.log(`from infoPage`, props.requestString);
     return () => {
       setInfo({});
     };

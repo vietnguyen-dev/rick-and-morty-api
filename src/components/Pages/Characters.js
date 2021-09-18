@@ -20,6 +20,7 @@ const Characters = () => {
     }
 
     const settingRequestId =(str) =>{
+      console.log(str)
       setRequestId(str)
     }
 
@@ -29,7 +30,7 @@ const Characters = () => {
       const searchChars = async () => {
         setLoading(true)
         try {
-          //console.log(requestId);
+          console.log('from searchChars', requestId);
           const response = await fetch(requestId, {
             method: "GET",
             headers: {
@@ -42,15 +43,25 @@ const Characters = () => {
           }
 
           const data = await response.json();
-
+          console.log(data, 'data')
+          console.log('data results', data.results)
           setNumPages(data.info.pages)
+
+          //let regexAfterSlash = /[^/]*$/;
 
           let charData = data.results.map((char) => {
             return {
               id: char.id,
               name: char.name,
-              description: `Species: ${char.species}, Status: ${char.status}`,
               imgSrc: char.image,
+              species: char.species,
+              status: char.status,
+              location: char.location.name,
+              origin: char.origin.name,
+              gender: char.gender,
+              type: char.type,
+              firstAppear: char.episode[0].match(regexAfterSlash),
+              lastestAppear: char.episode[char.episode.length - 1].match(regexAfterSlash)
             };
           });
           //console.log(charData);

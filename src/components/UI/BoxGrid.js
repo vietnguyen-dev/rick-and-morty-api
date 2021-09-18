@@ -20,7 +20,8 @@ const BoxGrid = (props) => {
             id={item.id}
             name={item.name}
             imgSrc={item.imgSrc}
-            description={item.description}
+            status={item.status}
+            species={item.species}
             setPage={setPage}
           />
         ))}

@@ -3,23 +3,33 @@ import Pagination from 'react-responsive-pagination';
 import './PaginateButtons.css'
 
 const PaginateButtons = (props) => {
+   const [pastFirstMount, setPastFirstMount] = useState(false)
    const [pageNum, setPageNum] = useState(1);
-
-   const changePage = () =>{
-      console.log(pageNum)
-      let pageString = `https://rickandmortyapi.com/api/character/?page=${pageNum}`;
-      props.searchChars(pageString)
-   }
 
    useEffect(() =>{
       console.log(pageNum)
+      const changePage = () =>{
+         let pageString = `https://rickandmortyapi.com/api/character/?page=${pageNum}`;
+         props.searchChars(pageString)
+      }
+
+      switch(pastFirstMount){
+         case true:
+            changePage()
+            break;
+         case false:
+            setPastFirstMount(true)
+            break;
+         default:
+            console.error('no state info', pastFirstMount)
+      }
    }, [pageNum])
 
    return(
     <Pagination 
       current={pageNum}
       total={props.numPages}
-      onPageChange={changePage}
+      onPageChange={setPageNum}
     />     
    )
   
