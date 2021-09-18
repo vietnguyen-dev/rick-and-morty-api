@@ -5,14 +5,14 @@ import Page from '../UI/Page';
 import InfoPage from './InfoPage';
 import ChararacterSearchForm from '../Forms/ChararacterSearchForm';
 import PaginateButtons from '../UI/PaginateButtons';
+import Loader from 'react-spinners/ClipLoader';
 
 const Characters = () => {
     const [characters, setCharacters] = useState([])
-    //const [numPages, setNumPages] = useState(0)
+    const [numPages, setNumPages] = useState(0)
     const [charSelect, setCharSelect] = useState(false)
+    const [loading, setLoading] = useState(false)
     const [requestId, setRequestId] = useState(`https://rickandmortyapi.com/api/character`)
-
-    const setCharsOutside = chars => setCharacters(chars);
 
     const setCharPage = obj =>{
         setRequestId(`https://rickandmortyapi.com/api/character/${obj.id}`);
@@ -26,50 +26,10 @@ const Characters = () => {
     const setCharPageBack = () => setCharSelect(false);
 
     useEffect(() =>{
-       const fetchCharacters = async () => {
-         try {
-           const response = await fetch(
-             `requestId`,
-             {
-               method: "GET",
-               headers: {
-                 "Content-Type": "application/json",
-               },
-             }
-           );
-           //console.log(response)
-
-           if (response.status !== 200) {
-             throw new Error("Can't Fetch Characters");
-           }
-
-           const data = await response.json();
-           console.log(data)
-           console.log(data.results)
-           let charData = data.results.map((char) => {
-             return {
-               id: char.id,
-               name: char.name,
-               description: `Species: ${char.species}, Status: ${char.status}`,
-               imgSrc: char.image,
-             };
-           });
-           setCharacters(charData);
-         } catch (err) {
-           console.error(err);
-         }
-       };
-
-       fetchCharacters()
-        return() =>{
-            setCharacters([])
-        }
-    }, [])
-
-    useEffect(() =>{
       const searchChars = async () => {
+        setLoading(true)
         try {
-          console.log(requestId);
+          //console.log(requestId);
           const response = await fetch(requestId, {
             method: "GET",
             headers: {
@@ -82,7 +42,9 @@ const Characters = () => {
           }
 
           const data = await response.json();
-          // console.log(data)
+
+          setNumPages(data.info.pages)
+
           let charData = data.results.map((char) => {
             return {
               id: char.id,
@@ -91,8 +53,10 @@ const Characters = () => {
               imgSrc: char.image,
             };
           });
-          console.log(charData);
+          //console.log(charData);
           setCharacters(charData);
+          document.body.scrollTop = document.documentElement.scrollTop = 0;
+          setLoading(false)
         } catch (err) {
           console.error(err);
         }
@@ -114,11 +78,16 @@ const Characters = () => {
             <p style={{ textAlign: `center` }}>
               Search and Learn about your favorite Rick and Morty Characters!
             </p>
-            <ChararacterSearchForm searchChars={settingRequestId}/>
-            <MainBody>
-              <BoxGrid items={characters} setCharPage={setCharPage}/>
-            </MainBody>
-            <PaginateButtons setCharsOutside={setCharsOutside} />
+            { loading ? <Loader loadState={loading}/> : 
+            <>
+              <ChararacterSearchForm searchChars={settingRequestId}/>
+              <MainBody>
+                <BoxGrid items={characters} setCharPage={setCharPage}/>
+              </MainBody>
+              <PaginateButtons numPages={numPages} searchChars={settingRequestId}/>
+            </>
+            }
+            
           </div>
         )}
       </Page>

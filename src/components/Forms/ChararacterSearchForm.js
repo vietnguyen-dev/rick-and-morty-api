@@ -8,26 +8,29 @@ const ChararacterSearchForm = (props) => {
     const [gender, setGender] = useState('');
 
      const createSearchString = (obj) => {
-       let searchString = `https://rickandmortyapi.com/api/character/?`;
-       for (let thing in obj) {
-         if (thing.length > 1 && thing === `name`) {
-           searchString += `${thing}=${obj.name.split(" ")[0].toLowerCase()}`;
-         } else if (thing.length > 1 && thing === `status`) {
-           searchString += `&${thing}=${obj.status
-             .split(" ")[0]
-             .toLowerCase()}`;
-         } else if (thing.length > 1 && thing === `species`) {
-           searchString += `&${thing}=${obj.species
-             .split(" ")[0]
-             .toLowerCase()}`;
-         } else if (thing.length > 1 && thing === `gender`) {
-           searchString += `&${thing}=${obj.gender
-             .split(" ")[0]
-             .toLowerCase()}`;
-         } else {
-           console.error("no existng property", thing);
-         }
-       }
+       let searchQueries = obj;
+       let searchString = `https://rickandmortyapi.com/api/character/`;
+       let moreThan1Query = false;
+
+        for (const key in obj) {
+          //console.log(`${key}, ${searchQueries[key]}`)
+          if (searchQueries[key]) {
+            // console.log(searchQueries[key])
+            switch (moreThan1Query) {
+              case true:
+                searchString += `&${key}=${searchQueries[key]}`;
+                break;
+              case false:
+                moreThan1Query = true;
+                searchString += `?${key}=${searchQueries[key]}`;
+                break;
+              default:
+                console.error(`query not found`);
+                break;
+            }
+          }
+          //moreThan1Query = false;
+        }
        return searchString;
      };
 
