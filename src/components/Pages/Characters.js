@@ -47,7 +47,7 @@ const Characters = () => {
           console.log('data results', data.results)
           setNumPages(data.info.pages)
 
-          //let regexAfterSlash = /[^/]*$/;
+          let regexAfterSlash = /[^/]*$/;
 
           let charData = data.results.map((char) => {
             return {
