@@ -5,10 +5,10 @@ import './BoxGrid.css'
 const BoxGrid = (props) => {
     const setPage = info =>{
         const data = {
-            id: info[0],
+            id: info,
             condition: true
         }
-        //console.log(data)
+        // console.log(data)
         props.setCharPage(data)
     }
 

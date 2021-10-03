@@ -61,11 +61,6 @@ const InfoPage = (props) => {
             origin={info.origin} species={info.species} firstAppear={info.firstAppear} lastestAppear={info.lastestAppear} />
         </div>
       </div>
-      {/* <div className="nextInfo">
-        <button>
-          {parseInt(props.requestString.match(/[^/]*$/)) + 1}. Next
-        </button>
-      </div> */}
     </>
   );
 }
