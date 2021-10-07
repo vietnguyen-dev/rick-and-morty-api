@@ -33,8 +33,7 @@ const InfoPage = (props) => {
           type: data.type,
           status: data.status,
           firstAppear: data.episode[0].match(regexAfterSlash),
-          lastestAppear:
-            data.episode[data.episode.length - 1].match(regexAfterSlash),
+          lastestAppear: data.episode[data.episode.length - 1].match(regexAfterSlash),
         };
         setInfo(refinedCharData);
       } catch (err) {
