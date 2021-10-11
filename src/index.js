@@ -4,9 +4,20 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//redux store since its small
+import searchReducer from "./redux/reducer";
+import { Provider } from 'react-redux';
+import { createStore } from "redux";
+
+const searchStore = createStore(searchReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={searchStore}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

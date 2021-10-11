@@ -7,7 +7,7 @@ const PaginateButtons = (props) => {
    const [pageNum, setPageNum] = useState(1);
 
    useEffect(() =>{
-      console.log(pageNum)
+      console.log('page number', pageNum)
       const changePage = () =>{
          let pageString = `https://rickandmortyapi.com/api/character/?page=${pageNum}`;
          props.searchChars(pageString)

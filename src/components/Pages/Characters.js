@@ -12,6 +12,8 @@ const Characters = () => {
     const [numPages, setNumPages] = useState(0)
     const [charSelect, setCharSelect] = useState(false)
     const [loading, setLoading] = useState(false)
+
+    //this will be redux store value
     const [requestId, setRequestId] = useState(`https://rickandmortyapi.com/api/character`)
 
     const setCharPage = obj =>{
@@ -26,6 +28,8 @@ const Characters = () => {
 
     const setCharPageBack = () => {
       setCharSelect(false);
+      
+      //change to current store
       setRequestId(`https://rickandmortyapi.com/api/character/`)
     }
 
