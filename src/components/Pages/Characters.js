@@ -7,18 +7,18 @@ import ChararacterSearchForm from '../Forms/ChararacterSearchForm';
 import PaginateButtons from '../UI/PaginateButtons';
 import Loader from 'react-spinners/ClipLoader';
 import { useSelector, useDispatch } from 'react-redux';
-import { search } from '../../redux/action';
+import { charSearch } from '../../redux/action';
 
 
 const Characters = () => {
     const [characters, setCharacters] = useState([])
     const [numPages, setNumPages] = useState(0)
-    const [charSelect, setCharSelect] = useState(false)
     const [loading, setLoading] = useState(false)
-    const currentSearch = useSelector(state => state.currentSearch)
+    const charactersSearch = useSelector(state => state.character)
     const dispatch = useDispatch()
 
-    //this will be redux store value
+    //for individual character
+    const [charSelect, setCharSelect] = useState(false)
     const [requestId, setRequestId] = useState(`https://rickandmortyapi.com/api/character`)
 
     const setCharPage = obj =>{
@@ -28,23 +28,23 @@ const Characters = () => {
 
     const settingRequestId = str =>{
       console.log(str)
-      dispatch(search(str))
+      dispatch(charSearch(str))
     }
 
     const setCharPageBack = () => {
       setCharSelect(false);
       
       //change to current store
-      setRequestId(`https://rickandmortyapi.com/api/character/`)
+      // setRequestId(`https://rickandmortyapi.com/api/character/`)
     }
 
     useEffect(() =>{
       const searchChars = async () => {
         setLoading(true)
         try {
-          // console.log('from searchChars', requestId);
+          // console.log(currentSearch)
           if (charSelect === false) {
-            const response = await fetch(requestId, {
+            const response = await fetch(charactersSearch, {
               method: "GET",
               headers: {
                 "Content-Type": "application/json",
@@ -91,7 +91,7 @@ const Characters = () => {
        return () => {
          setCharacters([]);
        };
-    }, [requestId])
+    }, [charactersSearch])
 
     return (
       <Page heading="Characters">
