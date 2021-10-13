@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import './Form.css'
+import { useSelector, useDispatch } from 'react-redux'
+import { search } from '../../redux/action'
 
 const ChararacterSearchForm = (props) => {
     const [name, setName] = useState('')

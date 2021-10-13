@@ -6,12 +6,17 @@ import InfoPage from './InfoPage';
 import ChararacterSearchForm from '../Forms/ChararacterSearchForm';
 import PaginateButtons from '../UI/PaginateButtons';
 import Loader from 'react-spinners/ClipLoader';
+import { useSelector, useDispatch } from 'react-redux';
+import { search } from '../../redux/action';
+
 
 const Characters = () => {
     const [characters, setCharacters] = useState([])
     const [numPages, setNumPages] = useState(0)
     const [charSelect, setCharSelect] = useState(false)
     const [loading, setLoading] = useState(false)
+    const currentSearch = useSelector(state => state.currentSearch)
+    const dispatch = useDispatch()
 
     //this will be redux store value
     const [requestId, setRequestId] = useState(`https://rickandmortyapi.com/api/character`)
@@ -21,9 +26,9 @@ const Characters = () => {
         setCharSelect(obj.condition)
     }
 
-    const settingRequestId =(str) =>{
+    const settingRequestId = str =>{
       console.log(str)
-      setRequestId(str)
+      dispatch(search(str))
     }
 
     const setCharPageBack = () => {
@@ -37,7 +42,7 @@ const Characters = () => {
       const searchChars = async () => {
         setLoading(true)
         try {
-          console.log('from searchChars', requestId);
+          // console.log('from searchChars', requestId);
           if (charSelect === false) {
             const response = await fetch(requestId, {
               method: "GET",
@@ -51,8 +56,8 @@ const Characters = () => {
             }
 
             const data = await response.json();
-            console.log(data, 'data')
-            console.log(data.info, 'dat.info')
+            // console.log(data, 'data')
+            // console.log(data.info, 'dat.info')
             setNumPages(data.info.pages)
 
             let regexAfterSlash = /[^/]*$/;
