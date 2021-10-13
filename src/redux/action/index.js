@@ -1,15 +1,6 @@
-const mainSearch = newSearch=>{
+export const search = searchQuery =>{
     return {
-        type: 'MAIN-SEARCH',
-        query: newSearch
+        type: 'SEARCH',
+        query: searchQuery
     }
-}
-
-const itemSearch = newSearch =>{
-    return {
-        type: 'ITEM-SEARCH',
-        query: newSearch
-    }
-}
-
-export { mainSearch, itemSearch } 
+} 
