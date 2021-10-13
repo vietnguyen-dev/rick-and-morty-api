@@ -42,7 +42,7 @@ const Characters = () => {
       const searchChars = async () => {
         setLoading(true)
         try {
-          // console.log(currentSearch)
+          console.log(charactersSearch)
           if (charSelect === false) {
             const response = await fetch(charactersSearch, {
               method: "GET",
@@ -109,7 +109,7 @@ const Characters = () => {
               <MainBody>
                 <BoxGrid items={characters} setCharPage={setCharPage}/>
               </MainBody>
-              <PaginateButtons numPages={numPages} searchChars={settingRequestId}/>
+              <PaginateButtons numPages={numPages} current={charactersSearch} searchChars={settingRequestId}/>
             </>
             }
             
