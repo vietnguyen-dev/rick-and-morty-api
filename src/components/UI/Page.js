@@ -1,8 +1,9 @@
 import React from 'react'
+import './Page.css'
 
 const Page = (props) => {
     return (
-        <div style={{ backgroundColor: `#f5f5f5`}}>
+        <div className='page'>
             {props.children}
         </div>
     )

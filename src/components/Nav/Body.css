@@ -1,7 +1,7 @@
 .navBar{
     list-style-type: none;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     width: 30%;
     position: relative;
     left: 65%;
@@ -10,12 +10,56 @@
 .navBack{
     background-color: #17517e;
     padding: 2% 3%;
+    color: white;
+}
+
+.navBack p{
+    text-align: right;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.none{
+    display: none;
+}
+
+.show{
+    display: block;
 }
 
 .navLink{
-    color: white;
     text-decoration: none;
     display: grid;
     text-align: center;
     align-items: center;
+    padding: 2% 3%;
+    color: white;
 }
+
+@media only screen and (min-width: 800px){
+    .navBar{
+        list-style-type: none;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 30%;
+        position: relative;
+        left: 65%;
+        display: block;
+    }
+
+    .toggle{
+        display: none;
+    }
+  }
+  
+  @media only screen and (min-width: 1000px){
+    .navBar{
+        list-style-type: none;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        width: 30%;
+        position: relative;
+        left: 65%;
+    }
+    
+  }

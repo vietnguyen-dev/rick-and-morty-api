@@ -16,13 +16,28 @@ const BoxGrid = (props) => {
       <div className="boxGrid">
         {props.items.map((item) => (
           <BoxCard
+
+            //all
             key={item.id}
             id={item.id}
+            cardType={props.itemType}
             name={item.name}
+            setPage={setPage}
+
+            //for character
             imgSrc={item.imgSrc}
             status={item.status}
             species={item.species}
-            setPage={setPage}
+
+            //for location
+            type={item.type}
+            dimension={item.dimension}
+
+            //for episiode
+            air={item.air}
+            characters={item.characters}
+            episode={item.episode}
+            
           />
         ))}
       </div>

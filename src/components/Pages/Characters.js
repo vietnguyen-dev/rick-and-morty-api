@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import MainBody from '../UI/MainBody'
 import BoxGrid from '../UI/BoxGrid';
 import Page from '../UI/Page';
-import InfoPage from './InfoPage';
+import InfoPage from './ItemInfo';
 import ChararacterSearchForm from '../Forms/ChararacterSearchForm';
 import PaginateButtons from '../UI/PaginateButtons';
 import Loader from 'react-spinners/ClipLoader';
@@ -19,11 +19,15 @@ const Characters = () => {
 
     //for individual character
     const [charSelect, setCharSelect] = useState(false)
-    const [requestId, setRequestId] = useState(`https://rickandmortyapi.com/api/character`)
+    const [characterId, setCharacterId] = useState(1)
 
     const setCharPage = obj =>{
-        setRequestId(`https://rickandmortyapi.com/api/character/${obj.id}`);
+        setCharacterId(`${obj.id}`);
         setCharSelect(obj.condition)
+    }
+
+    const setCharPageBack = () => {
+      setCharSelect(false);
     }
 
     const settingRequestId = str =>{
@@ -31,19 +35,11 @@ const Characters = () => {
       dispatch(charSearch(str))
     }
 
-    const setCharPageBack = () => {
-      setCharSelect(false);
-      
-      //change to current store
-      // setRequestId(`https://rickandmortyapi.com/api/character/`)
-    }
-
     useEffect(() =>{
       const searchChars = async () => {
         setLoading(true)
         try {
-          console.log(charactersSearch)
-          if (charSelect === false) {
+          // console.log(charactersSearch)
             const response = await fetch(charactersSearch, {
               method: "GET",
               headers: {
@@ -81,7 +77,6 @@ const Characters = () => {
             setCharacters(charData);
             document.body.scrollTop = document.documentElement.scrollTop = 0;
             setLoading(false)
-          }
         } catch (err) {
           console.error(err);
         }
@@ -94,10 +89,10 @@ const Characters = () => {
     }, [charactersSearch])
 
     return (
-      <Page heading="Characters">
+      <Page>
         <h1  style={{textAlign: `center`, padding: `2% 3%`, fontSize: `30px`}}>Characters</h1>
         {charSelect ? (
-            <InfoPage requestString={requestId} setCharPageBack={setCharPageBack}/>
+            <InfoPage itemType="character" requestString={characterId} setCharPageBack={setCharPageBack}/>
         ) : (
           <div>
             <p style={{ textAlign: `center` }}>
@@ -107,9 +102,9 @@ const Characters = () => {
             <>
               <ChararacterSearchForm searchChars={settingRequestId}/>
               <MainBody>
-                <BoxGrid items={characters} setCharPage={setCharPage}/>
+                <BoxGrid itemType="character" items={characters} setCharPage={setCharPage}/>
               </MainBody>
-              <PaginateButtons numPages={numPages} current={charactersSearch} searchChars={settingRequestId}/>
+              <PaginateButtons numPages={numPages} current={charactersSearch} pageTurn={settingRequestId}/>
             </>
             }
             

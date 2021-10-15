@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import Pagination from 'react-responsive-pagination';
 import './PaginateButtons.css'
 
@@ -22,33 +22,26 @@ const createSearchString = (currentUrl, num) =>{
   }
 }
 
-const PaginateButtons = (props) => {
-   const [pastFirstMount, setPastFirstMount] = useState(false)
+const PaginateButtons = ({numPages, current, pageTurn}) => {
+   // const [pastFirstMount, setPastFirstMount] = useState(false)
+   const didMount = useRef(false)
    const [pageNum, setPageNum] = useState(1)
 
    useEffect(() =>{
-      const changePage = () =>{
-         let pageString = createSearchString(props.current, pageNum)
-         console.log(props.current, pageNum)
-         props.searchChars(pageString)
+      if (!didMount.current){
+         didMount.current = true;
+      } else{
+         let pageString = createSearchString(current, pageNum)
+         // console.log(current, pageNum)
+         pageTurn(pageString)
+         didMount.current = false;
       }
-
-      switch(pastFirstMount){
-         case true:
-            changePage()
-            break;
-         case false:
-            setPastFirstMount(true)
-            break;
-         default:
-            console.error('no state info', pastFirstMount)
-      }
-   }, [pageNum])
+   }, [pageNum, current, pageTurn])
 
    return(
     <Pagination 
       current={pageNum}
-      total={props.numPages}
+      total={numPages}
       onPageChange={setPageNum}
     />     
    )

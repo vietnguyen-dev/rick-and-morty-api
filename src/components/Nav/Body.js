@@ -1,16 +1,20 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Home from '../Pages/Home';
 import Characters from '../Pages/Characters';
 import Episodes from '../Pages/Episodes'
 import Locations from '../Pages/Locations'
+import Toggle from '../UI/Toggle';
 import './Body.css'
 
-const Body = () => {
+const Body = () => {  
+    const [navDisplay, setNavDisplay] = useState(false)
+
     return (
       <Router>
         <nav className="navBack">
-          <ul className="navBar">
+          <h3 onClick={()=> setNavDisplay(!navDisplay)} className='toggle'>{navDisplay ? <p>X</p> : <Toggle /> }</h3>
+          <ul className={`navBar ${navDisplay ? `hidden` : `none`}`}>
             <li>
               <Link to="/" className="navLink">
                 Home

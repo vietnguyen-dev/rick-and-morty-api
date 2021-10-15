@@ -1,0 +1,10 @@
+.toggleButton{
+    background-color: #17517e;
+    border: none;
+    width: 15%;
+   margin-left: 85%;
+}
+
+.bar{
+    border-top: 3px solid white;
+}

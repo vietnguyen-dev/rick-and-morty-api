@@ -51,19 +51,27 @@ const ChararacterSearchForm = (props) => {
       setGender('')
     }
 
+    const getAllChars = () =>{
+      props.searchChars(`https://rickandmortyapi.com/api/character`)
+      setName('');
+      setStatus('')
+      setSpecies('')
+      setGender('')
+    }
+
     return (
       <>
-        <form className="form" onSubmit={getSearchQueries}>
+        <form onSubmit={getSearchQueries}>
+          <div className="form">
           <div>
-            <label>Name </label>
             <input
               value={name}
               type="text"
+              placeholder='Choose Name'
               onChange={(event) => setName(event.target.value)}
             />
           </div>
           <div>
-            <label>Status: </label>
             <select
               onChange={(event) => setStatus(event.target.value)}
               value={status}
@@ -76,7 +84,6 @@ const ChararacterSearchForm = (props) => {
             </select>
           </div>
           <div>
-            <label>Species: </label>
             <select
               onChange={(event) => setSpecies(event.target.value)}
               value={species}
@@ -105,7 +112,6 @@ const ChararacterSearchForm = (props) => {
             </select>
           </div> */}
           <div>
-            <label>Gender: </label>
             <select
               onChange={(event) => setGender(event.target.value)}
               value={gender}
@@ -119,7 +125,11 @@ const ChararacterSearchForm = (props) => {
               <option value="unknown">Unknown</option>
             </select>
           </div>
-          <button type="submit">Search</button>
+          </div>
+          <div className='searchButtons'>
+            <button className='get' onClick={getAllChars}>Get All Characters</button>
+            <button type="submit">SEARCH</button>
+          </div>
         </form>
       </>
     );

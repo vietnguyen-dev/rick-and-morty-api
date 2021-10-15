@@ -1,6 +1,43 @@
 .form{
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(2, 220px);
     text-align: center;
     padding: 1% 5%;
+}
+
+form{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+label{
+    font-weight: bold;
+}
+
+input, select{
+    width: 200px;
+    padding: 2% 3%;
+    margin: 2%;
+}
+
+button[type='submit'], .get{
+    margin-left: 30%;
+    background-color: blue;
+    padding: 3% 5%;
+    font-size: 2vh;
+    color: white;
+    border-radius: 10px;
+    max-width: 15vh;
+    border: none;
+    letter-spacing: 3px;
+}
+
+button[type='submit']:hover, .get:hover{
+    background-color: green
+}
+
+.searchButtons{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
