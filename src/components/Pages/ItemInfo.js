@@ -26,7 +26,7 @@ const InfoPage = (props) => {
         let regexAfterSlash = /[^/]*$/;
 
         let itemData = {}
-        // console.log(data)
+        console.log(data)
 
         switch(itemInfoType.current){
           case 'character':
@@ -49,6 +49,13 @@ const InfoPage = (props) => {
               type: data.type,
               dimension: data.dimension,
               residents: data.residents
+            }
+            break;
+          case 'episode':
+            itemData = {
+              name: data.name,
+              air: data.air_date,
+              episode: data.episode
             }
             break;
           default:
@@ -79,7 +86,7 @@ const InfoPage = (props) => {
         <div className="infoText">
             <CharInfo cardType={itemInfoType.current} gender={info.gender} status={info.status} location={info.location} 
               origin={info.origin} species={info.species} firstAppear={info.firstAppear} lastestAppear={info.lastestAppear} 
-              type={info.type} dimension={info.dimension}
+              type={info.type} dimension={info.dimension} air={info.air} episode={info.episode}
             />
         </div>
       </div>

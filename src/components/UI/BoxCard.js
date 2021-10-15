@@ -4,7 +4,7 @@ import './BoxCard.css'
 const BoxCard = props => {
     const charBox = useRef(props.cardType === 'character')
     const locBox = useRef(props.cardType === 'location')
-    const epiBox = useRef(props.cardType === 'character')
+    const epiBox = useRef(props.cardType === 'episode')
 
     const settingPage = () =>{
       props.setPage(props.id)

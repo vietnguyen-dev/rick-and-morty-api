@@ -1,0 +1,10 @@
+.homePageLinks{
+    list-style-type: none;
+    display: flex;
+    margin-left: 30%;
+    margin-bottom: 30%;
+}
+
+.homePageLinks li{
+    padding: 5%;
+}

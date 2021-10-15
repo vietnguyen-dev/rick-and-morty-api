@@ -90,12 +90,12 @@ const Characters = () => {
 
     return (
       <Page>
-        <h1  style={{textAlign: `center`, padding: `2% 3%`, fontSize: `30px`}}>Characters</h1>
+        <h1>Characters</h1>
         {charSelect ? (
             <InfoPage itemType="character" requestString={characterId} setCharPageBack={setCharPageBack}/>
         ) : (
           <div>
-            <p style={{ textAlign: `center` }}>
+            <p>
               Search and Learn about your favorite Rick and Morty Characters!
             </p>
             { loading ? <Loader loadState={loading}/> : 

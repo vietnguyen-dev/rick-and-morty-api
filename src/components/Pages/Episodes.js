@@ -3,7 +3,7 @@ import MainBody from '../UI/MainBody'
 import BoxGrid from '../UI/BoxGrid';
 import Page from '../UI/Page';
 import InfoPage from './ItemInfo';
-import ChararacterSearchForm from '../Forms/ChararacterSearchForm';
+import EpisodeSearchForm from '../Forms/EpisodeSearchForm';
 import PaginateButtons from '../UI/PaginateButtons';
 import Loader from 'react-spinners/ClipLoader';
 import { useSelector, useDispatch } from 'react-redux';
@@ -82,7 +82,7 @@ const Episodes = () => {
 
     return (
       <Page>
-        <h1  style={{textAlign: `center`, padding: `2% 3%`, fontSize: `30px`}}>episodes</h1>
+        <h1>Episodes</h1>
         {charSelect ? (
             <InfoPage itemType="episode" requestString={episodeId} setCharPageBack={setCharPageBack}/>
         ) : (
@@ -92,7 +92,7 @@ const Episodes = () => {
             </p>
             { loading ? <Loader loadState={loading}/> : 
             <>
-              <ChararacterSearchForm searchChars={settingRequestId}/>
+              <EpisodeSearchForm searchChars={settingRequestId}/>
               <MainBody>
                 <BoxGrid itemType="episode" items={episodes} setCharPage={setCharPage}/>
               </MainBody>

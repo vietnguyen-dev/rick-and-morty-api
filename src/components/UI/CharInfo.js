@@ -3,6 +3,8 @@ import React, {useRef} from 'react'
 const CharInfo = (props) => {
   const charBox = useRef(props.cardType === 'character')
   const locBox = useRef(props.cardType === 'location')
+  const epiBox = useRef(props.cardType === 'episode')
+ 
   console.log(`charInfo ${props.cardType}`)
 
     return (
@@ -25,6 +27,12 @@ const CharInfo = (props) => {
           {/* {props.residents.map((resident, key) => <li key={key}>{resident}</li>)} */}
         </>
         }
+        {
+            epiBox.current && <>
+            <p> Air Date: {props.air}</p>
+            <p> Episode: {props.episode}</p>
+            </>
+          }
       </>
     );
 }
