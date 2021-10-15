@@ -12,7 +12,7 @@ const Home = () => {
       <Page>
         <h1>Welcome to the Rick and Morty Universe!</h1>
         <p>
-          This project was made using React, React Router, and the{" "}
+          This project was made using React, React Router, Redux, and the{" "}
           <a href="https://rickandmortyapi.com/">Rick and Morty API</a>
         </p>
         <p>Learn about:</p>
@@ -36,6 +36,8 @@ const Home = () => {
             </li>
           </ul>
         </div>
+
+        <p>Hosted on Netlify</p>
         <Router>
           <Switch>
             <Route path="/characters">
